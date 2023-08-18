@@ -1,8 +1,10 @@
 package dev.sarj.sarjdev.service.elasticsearch.indexer.template;
 
+import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.mapper.IndexDocumentMapper;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.model.ChargingIndexDocument;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
@@ -15,7 +17,12 @@ import java.util.List;
  * @param <T> The type of objects implementing IndexDocumentMapper interface.
  */
 @Slf4j
+@RequiredArgsConstructor
 public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper> {
+    private ElasticSearchService elasticSearchService;
+
+    private final String INDEX_NAME = "chargingstations";
+
     /**
      * Indexes data into Elasticsearch.
      * This method follows a template pattern where the concrete implementation of
@@ -43,7 +50,11 @@ public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper
      *
      * @param chargingIndexDocuments The list of ChargingIndexDocument instances to be indexed.
      */
-    protected abstract void indexOnES(List<ChargingIndexDocument> chargingIndexDocuments);
+    private void indexOnES(List<ChargingIndexDocument> chargingIndexDocuments) {
+        for (ChargingIndexDocument chargingIndexDocument : chargingIndexDocuments) {
+            elasticSearchService.indexDocument(INDEX_NAME, chargingIndexDocument);
+        }
+    }
 
     /**
      * Retrieves a list of provider-specific charging map objects implementing IndexDocumentMapper.

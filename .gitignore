@@ -34,4 +34,4 @@ build/
 
 target
 
-src/main/resources/data
+src/main/resources/environments/production

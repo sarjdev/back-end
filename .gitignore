@@ -32,6 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+.DS_Store
+
 target
 
 src/main/resources/environments/production

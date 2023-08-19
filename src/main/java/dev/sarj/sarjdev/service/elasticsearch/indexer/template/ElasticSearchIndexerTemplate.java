@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper> {
-    private ElasticSearchService elasticSearchService;
+    private final ElasticSearchService elasticSearchService;
 
     private final String INDEX_NAME = "chargingstations";
 

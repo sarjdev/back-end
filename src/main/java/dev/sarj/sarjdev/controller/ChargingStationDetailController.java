@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/charging-stations")
-public class ChargingDetailController {
+public class ChargingStationDetailController {
 
     private final List<ChargingStationDetailTemplate<?>> chargingStationDetailServices;
 

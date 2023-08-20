@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/search")
-public class SearchController {
+public class ChargingStationSearchController {
 
     private final SearchService service;
 

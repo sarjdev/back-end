@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/charging-map-indexer")
-public class ChargingMapIndexerController {
+public class ChargingStationMapIndexerController {
 
     private final List<ElasticSearchIndexerTemplate> elasticSearchIndexerTemplates;
 

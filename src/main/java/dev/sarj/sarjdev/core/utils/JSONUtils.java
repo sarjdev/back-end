@@ -20,8 +20,8 @@ public class JSONUtils {
     public static <T> T deserialize(String content, Class<T> clazz) {
         try {
             // Convert the JSON content into an instance of the specified class using the OBJECT_MAPPER.
-            return OBJECT_MAPPER.convertValue(content, clazz);
-        } catch (IllegalArgumentException e) {
+            return OBJECT_MAPPER.readValue(content, clazz);
+        } catch (Exception e) {
             throw new IllegalArgumentException("Error during deserialization: " + e.getMessage(), e);
         }
     }
@@ -44,6 +44,21 @@ public class JSONUtils {
             throw new IllegalArgumentException("Error during deserialization: " + e.getMessage(), e);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Serializes the given object into a JSON string using the Jackson ObjectMapper.
+     *
+     * @param object The object to be serialized.
+     * @return The JSON string representation of the object.
+     * @throws RuntimeException If an error occurs during serialization.
+     */
+    public static String serialize(Object object) {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error during serialization: " + e.getMessage(), e);
         }
     }
 }

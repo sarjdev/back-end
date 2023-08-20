@@ -13,7 +13,7 @@ public interface ElasticSearchService {
      * @param document  The document to be indexed.
      * @return The ID of the indexed document.
      */
-    String indexDocument(String indexName, Object document);
+    String indexDocument(String indexName, String id, Object document);
 
     /**
      * Retrieves all data of a specified type from Elasticsearch.

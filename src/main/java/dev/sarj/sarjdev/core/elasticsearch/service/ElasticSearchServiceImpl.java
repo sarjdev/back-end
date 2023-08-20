@@ -22,10 +22,10 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
     @Override
-    public String indexDocument(String indexName, Object document) {
+    public String indexDocument(String indexName, String id, Object document) {
         try {
             IndexResponse response = elasticsearchClient
-                    .index(i -> i.index(indexName).document(document));
+                    .index(i -> i.index(indexName).document(document).id(id));
 
             return response.id();
         } catch (IOException e) {

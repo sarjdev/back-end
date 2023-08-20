@@ -1,0 +1,2 @@
+elastic:
+  server:  http://localhost:9200

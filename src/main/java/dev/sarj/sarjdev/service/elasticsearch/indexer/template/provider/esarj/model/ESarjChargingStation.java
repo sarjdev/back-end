@@ -1,4 +1,4 @@
-package dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.model;
+package dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.esarj.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

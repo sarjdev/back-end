@@ -1,4 +1,4 @@
-package dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider;
+package dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.esarj;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
@@ -6,8 +6,7 @@ import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.template.ElasticSearchIndexerTemplate;
-import dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.model.ESarjChargingStation;
-import lombok.RequiredArgsConstructor;
+import dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.esarj.model.ESarjChargingStation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

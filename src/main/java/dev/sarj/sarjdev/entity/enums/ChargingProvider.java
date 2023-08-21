@@ -5,5 +5,6 @@ package dev.sarj.sarjdev.entity.enums;
  * Currently, only the ESARJ provider is supported.
  */
 public enum ChargingProvider {
-    ESARJ
+    ESARJ,
+    AKSAENERGY
 }

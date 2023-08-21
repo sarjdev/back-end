@@ -1,0 +1,81 @@
+[
+  {
+    "id": 63222,
+    "istasyonNoktasi": "GİRESUN SABAH CENTER AVM",
+    "cihazSayisi": 1,
+    "acikAdres": "Çıtlakkale Mahallesi, İnönü Cd. No: 112, 28200",
+    "erisimTipi": "Herkese Açık",
+    "il": "GİRESUN",
+    "ilce": "GİRESUN MERKEZ",
+    "koordinat": [
+      40.90846,
+      38.37049
+    ],
+    "cihazlar": {
+      "guc": [
+        "ac"
+      ],
+      "durum": [
+        2
+      ],
+      "erisim": [
+        2,
+        1
+      ]
+    },
+    "index": 0,
+    "renk": "4f6fe3"
+  },
+  {
+    "id": 65109,
+    "istasyonNoktasi": "AKGÜN AVM",
+    "cihazSayisi": 1,
+    "acikAdres": "Çaydaçıra mah. Şehit Korgeneral Hulusi Sayın cad. No.20 Elazığ",
+    "erisimTipi": "Herkese Açık",
+    "il": "ELAZIĞ",
+    "ilce": "ELAZIĞ MERKEZ",
+    "koordinat": [
+      38.67376,
+      39.17634
+    ],
+    "cihazlar": {
+      "guc": [
+        "ac"
+      ],
+      "durum": [
+        1
+      ],
+      "erisim": [
+        1
+      ]
+    },
+    "index": 1,
+    "renk": "42f569"
+  },
+  {
+    "id": 62627,
+    "istasyonNoktasi": "RAMADA BY WYNDHAM ELAZIĞ",
+    "cihazSayisi": 1,
+    "acikAdres": "SÜRSÜRÜ MAH. HALAYLI SOK. NO:22",
+    "erisimTipi": "Herkese Açık",
+    "il": "ELAZIĞ",
+    "ilce": "ELAZIĞ MERKEZ",
+    "koordinat": [
+      38.6695023,
+      39.1870346
+    ],
+    "cihazlar": {
+      "guc": [
+        "ac"
+      ],
+      "durum": [
+        1
+      ],
+      "erisim": [
+        1
+      ]
+    },
+    "index": 2,
+    "renk": "42f569"
+  }
+]

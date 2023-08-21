@@ -19,7 +19,7 @@ public class ChargingStationMapIndexerController {
     @PostMapping(path = "/index")
     public ResponseEntity<Boolean> index() {
         elasticSearchIndexerTemplates
-                .parallelStream()
+                .stream()
                 .forEach(ElasticSearchIndexerTemplate::index);
 
         return ResponseEntity.ok(Boolean.TRUE);

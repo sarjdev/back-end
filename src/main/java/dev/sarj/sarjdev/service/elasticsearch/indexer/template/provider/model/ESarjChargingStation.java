@@ -177,8 +177,9 @@ public class ESarjChargingStation implements IndexDocumentMapper {
     // Getters and setters for the fields (omitted for brevity)
 
     public ChargingIndexDocument toIndexDocument() {
+        String id = ChargingProvider.ESARJ + "#" + code;
         return ChargingIndexDocument.builder()
-                .id(code)
+                .id(id)
                 .city(storeCity)
                 .title(storeName)
                 .location(ChargingLocation.of(latitude, longitude))

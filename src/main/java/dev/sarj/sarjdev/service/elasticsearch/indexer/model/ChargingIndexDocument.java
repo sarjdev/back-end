@@ -60,6 +60,10 @@ public class ChargingIndexDocument {
      * The concatenated search text to enhance search capabilities.
      */
     private String searchText;
+    /**
+     * Provide live stats for charging station.
+     */
+    private Boolean provideLiveStats;
 
     /**
      * Builds the search text by concatenating title, address, and city.

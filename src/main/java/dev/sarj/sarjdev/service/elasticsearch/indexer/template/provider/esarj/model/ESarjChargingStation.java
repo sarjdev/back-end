@@ -187,6 +187,7 @@ public class ESarjChargingStation implements IndexDocumentMapper {
                 .plugsTotal(plugsTotal)
                 .provider(ChargingProvider.ESARJ)
                 .pointOfInterests(parsePointOfInterests())
+                .provideLiveStats(true)
                 .build()
                 .buildSearchText();
     }

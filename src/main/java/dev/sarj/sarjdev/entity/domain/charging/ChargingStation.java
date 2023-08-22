@@ -52,4 +52,8 @@ public class ChargingStation {
      * The charging provider associated with the charging station.
      */
     private ChargingProvider provider;
+    /**
+     * Provide live stats for charging station.
+     */
+    private Boolean provideLiveStats;
 }

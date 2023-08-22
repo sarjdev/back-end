@@ -58,6 +58,7 @@ public class AksaEnergyChargingStation implements IndexDocumentMapper {
                 .plugsTotal(deviceCount)
                 .provider(ChargingProvider.AKSAENERGY)
                 .pointOfInterests(List.of())
+                .provideLiveStats(false)
                 .build()
                 .buildSearchText();
     }

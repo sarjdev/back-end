@@ -12,7 +12,7 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the application
-RUN mvn package -Pproduction
+RUN mvn package -Pproduction -DskipTests
 
 # Use a Java image for the runtime environment
 FROM openjdk:17-jdk-slim

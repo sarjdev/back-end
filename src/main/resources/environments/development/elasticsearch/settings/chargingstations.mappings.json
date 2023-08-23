@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "address": {
+      "type": "text"
+    },
+    "city": {
+      "type": "text"
+    },
+    "id": {
+      "type": "keyword"
+    },
+    "location": {
+      "type": "geo_point"
+    },
+    "plugsTotal": {
+      "type": "long"
+    },
+    "pointOfInterests": {
+      "type": "text"
+    },
+    "provider": {
+      "type": "keyword"
+    },
+    "searchText": {
+      "type": "text",
+      "analyzer": "autocomplete",
+      "search_analyzer": "standard"
+    },
+    "title": {
+      "type": "text"
+    }
+  }
+}

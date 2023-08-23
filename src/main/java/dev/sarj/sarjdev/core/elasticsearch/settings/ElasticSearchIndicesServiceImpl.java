@@ -59,11 +59,11 @@ public class ElasticSearchIndicesServiceImpl implements ElasticSearchIndicesServ
 
         createIndex(indexName, setting, mapping, indicesClient);
 
+        deleteExistingAliasesExceptCreatedIndex(alias, indicesClient, indices);
+
         putAliasToCreatedIndex(indexName, alias, indicesClient);
 
         afterIndexHook.run();
-
-        deleteExistingAliasesExceptCreatedIndex(alias, indicesClient, indices);
     }
 
     /**

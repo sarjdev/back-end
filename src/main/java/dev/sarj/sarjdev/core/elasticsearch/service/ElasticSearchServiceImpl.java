@@ -7,8 +7,10 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import dev.sarj.sarjdev.core.elasticsearch.configuration.ElasticSearchClientProvider;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -54,5 +56,16 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
                 .hits()
                 .stream()
                 .map(Hit::source).toList();
+    }
+
+    @SneakyThrows
+    @Override
+    public <T> SearchResponse<T> runQuery(String indexName, String queryJson, Class<T> clazz) {
+        SearchRequest request = new SearchRequest.Builder()
+                .index(indexName)
+                .withJson(new ByteArrayInputStream(queryJson.getBytes()))
+                .build();
+
+        return elasticsearchClient.search(request, clazz);
     }
 }

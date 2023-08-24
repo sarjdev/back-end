@@ -1,5 +1,7 @@
 package dev.sarj.sarjdev.core.elasticsearch.service;
 
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+
 import java.util.List;
 
 /**
@@ -24,4 +26,16 @@ public interface ElasticSearchService {
      * @return A list containing all data of the specified type from the index.
      */
     <T> List<T> getAllData(String indexName, Class<T> clazz);
+
+
+    /**
+     * Executes an Elasticsearch query on the specified index and returns the search response.
+     *
+     * @param <T>       The type of objects to be retrieved from the search response.
+     * @param indexName The name of the Elasticsearch index to run the query on.
+     * @param queryJson The JSON representation of the query to be executed.
+     * @param clazz     The class representing the type of objects to be retrieved from the search response.
+     * @return A SearchResponse containing the search results matching the query.
+     */
+    <T> SearchResponse<T> runQuery(String indexName, String queryJson, Class<T> clazz);
 }

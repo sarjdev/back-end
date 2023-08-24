@@ -10,6 +10,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
+import static dev.sarj.sarjdev.common.Constant.Elastic.ES_INDEX_ALIAS_NAME;
+
 /**
  * Abstract template class for indexing data into Elasticsearch.
  * It provides a common structure for indexing data from various providers.
@@ -20,8 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper> {
     private final ElasticSearchService elasticSearchService;
-
-    private final String INDEX_NAME = "chargingstations";
 
     /**
      * Indexes data into Elasticsearch.
@@ -52,7 +52,7 @@ public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper
      */
     private void indexOnES(List<ChargingIndexDocument> chargingIndexDocuments) {
         for (ChargingIndexDocument chargingIndexDocument : chargingIndexDocuments) {
-            elasticSearchService.indexDocument(INDEX_NAME, chargingIndexDocument.getId(), chargingIndexDocument);
+            elasticSearchService.indexDocument(ES_INDEX_ALIAS_NAME, chargingIndexDocument.getId(), chargingIndexDocument);
         }
     }
 

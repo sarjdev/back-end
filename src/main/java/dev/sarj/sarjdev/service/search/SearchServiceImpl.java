@@ -24,7 +24,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public SearchResult search() {
-        List<ChargingStation> data = elasticsearchService.getAllData("chargingstations", ChargingStation.class);
+        List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class);
         return new SearchResult(data);
     }
 

@@ -1,0 +1,26 @@
+{
+  "size": @SIZE,
+  "query": {
+    "bool": {
+      "filter": {
+        "geo_distance": {
+          "distance": "@DISTANCEkm",
+          "location": {
+            "lat": @LATITUDE,
+            "lon": @LONGITUDE
+          }
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "_geo_distance": {
+        "location": "@LATITUDE, @LONGITUDE",
+        "order": "asc",
+        "unit": "km",
+        "mode": "min"
+      }
+    }
+  ]
+}

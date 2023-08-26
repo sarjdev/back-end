@@ -6,5 +6,6 @@ package dev.sarj.sarjdev.entity.enums;
  */
 public enum ChargingProvider {
     ESARJ,
-    AKSAENERGY
+    AKSAENERGY,
+    ZES
 }

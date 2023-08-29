@@ -68,4 +68,25 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 
         return elasticsearchClient.search(request, clazz);
     }
+
+    @Override
+    public <T> T getById(String indexName, String id, Class<T> clazz) {
+        SearchRequest request = new SearchRequest.Builder()
+                .index(indexName)
+                .query(q -> q.ids(v -> v.values(List.of(id))))
+                .build();
+
+        SearchResponse<T> searchResponse = null;
+
+        try {
+            searchResponse = elasticsearchClient.search(request, clazz);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return searchResponse.hits()
+                .hits()
+                .get(0)
+                .source();
+    }
 }

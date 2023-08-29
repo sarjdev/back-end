@@ -77,6 +77,11 @@ public class SearchServiceImpl implements SearchService {
         return SearchSuggestionResult.of(total, suggestedChargingStations);
     }
 
+    @Override
+    public ChargingStation getById(String id) {
+        return elasticsearchService.getById(ES_INDEX_ALIAS_NAME, id, ChargingStation.class);
+    }
+
     private static SuggestedChargingStation toSuggestedChargingStation(Hit<ChargingStation> source) {
         ChargingStation chargingStation = source.source();
         String highlight = source.highlight().get("searchText").get(0);

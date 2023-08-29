@@ -38,4 +38,15 @@ public interface ElasticSearchService {
      * @return A SearchResponse containing the search results matching the query.
      */
     <T> SearchResponse<T> runQuery(String indexName, String queryJson, Class<T> clazz);
+
+    /**
+     * Retrieves a document by its ID from the specified index.
+     *
+     * @param indexName The name of the index.
+     * @param id        The unique ID of the document.
+     * @param clazz     The class type to which the retrieved document will be mapped.
+     * @param <T>       The type of the document to retrieve.
+     * @return The retrieved document of the specified type.
+     */
+    <T> T getById(String indexName, String id, Class<T> clazz);
 }

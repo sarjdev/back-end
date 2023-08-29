@@ -59,7 +59,7 @@ public class ZESChargingStation implements IndexDocumentMapper {
 
     @Override
     public ChargingIndexDocument toIndexDocument() {
-        String id = ChargingProvider.ZES + "#" + stationCode;
+        String id = ChargingProvider.ZES + "#" + stationCode.split("\\|")[1];
         return ChargingIndexDocument.builder()
                 .id(id)
                 .city(null)

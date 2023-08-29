@@ -1,5 +1,6 @@
 package dev.sarj.sarjdev.service.search;
 
+import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.service.search.response.NearestSearchResult;
 import dev.sarj.sarjdev.service.search.response.SearchResult;
 import dev.sarj.sarjdev.service.search.response.SearchSuggestionResult;
@@ -32,4 +33,12 @@ public interface SearchService {
      * @return A SearchSuggestionResult containing the search suggestions.
      */
     SearchSuggestionResult suggest(String q, Integer size);
+
+    /**
+     * Retrieves a ChargingStation document by its ID.
+     *
+     * @param id The unique ID of the ChargingStation document.
+     * @return The retrieved ChargingStation document, or null if not found.
+     */
+    ChargingStation getById(String id);
 }

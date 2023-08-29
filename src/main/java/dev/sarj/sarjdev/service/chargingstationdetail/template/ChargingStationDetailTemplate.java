@@ -16,7 +16,8 @@ import java.util.Optional;
 public abstract class ChargingStationDetailTemplate<T> {
 
     // Mapping of charging provider prefixes to ChargingProvider enum values
-    private final Map<String, ChargingProvider> chargingStationMap = Map.of("ESARJ", ChargingProvider.ESARJ);
+    private final Map<String, ChargingProvider> chargingStationMap = Map
+            .of("ESARJ", ChargingProvider.ESARJ, "ZES", ChargingProvider.ZES);
 
     /**
      * Retrieves the details of a charging station based on its unique identifier.

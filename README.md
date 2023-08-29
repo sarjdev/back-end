@@ -23,13 +23,25 @@
 - Java 17 or higher
 - Spring Framework (e.g., Spring Boot)
 - Elasticsearch
+- Docker (for containerization)
+
 
 ## Installation
 
 1. Clone the project: `git clone https://github.com/sarjdev/back-end.git`
 2. Install required dependencies using your preferred build tool (Maven).
-3. Configure Elasticsearch: (Provide configuration details)
+3. Configure Elasticsearch: (see `compose file`)
 4. Start the application: Run `mvn spring-boot:run` in the project root.
+
+
+## Docker Compose (Optional)
+
+To run the application using Docker Compose, follow these steps:
+
+1. Install Docker on your machine.
+2. In the project root, make sure you have a `docker-compose.yml` file.
+3. Run `docker-compose up` to start the application and Elasticsearch.
+
 
 ## Usage
 
@@ -37,6 +49,7 @@
 2. Explore the map to view charging stations. Click on a station to reveal more information.
 3. Use the search bar to filter stations based on specific attributes.
 4. To view nearby charging stations, you might need to grant location permission.
+
 
 ## How to Contribute
 

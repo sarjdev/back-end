@@ -40,7 +40,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         SearchRequest searchRequest = new SearchRequest.Builder()
                 .index(indexName)
                 .from(0)
-                .size(1000)
+                .size(10_000)
                 .query(q -> q.matchAll(v -> QueryBuilders.matchAll()))
                 .build();
 

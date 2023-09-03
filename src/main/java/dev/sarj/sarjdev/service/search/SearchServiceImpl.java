@@ -10,6 +10,7 @@ import dev.sarj.sarjdev.service.search.response.SearchResult;
 import dev.sarj.sarjdev.service.search.response.SearchSuggestionResult;
 import dev.sarj.sarjdev.service.search.response.SuggestedChargingStation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,8 +27,10 @@ public class SearchServiceImpl implements SearchService {
     private final ResourceFileContentReader resourceFileContentReader;
 
     @Override
+    @Cacheable(value = "charging-stations-search-result")
     public SearchResult search() {
-        List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class);
+        List<String> fields = List.of("id", "location", "provider");
+        List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);
         return new SearchResult(data);
     }
 

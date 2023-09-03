@@ -6,6 +6,7 @@ import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import dev.sarj.sarjdev.core.elasticsearch.configuration.ElasticSearchClientProvider;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -36,11 +37,12 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
     @Override
-    public <T> List<T> getAllData(String indexName, Class<T> clazz) {
+    public <T> List<T> getAllData(String indexName, Class<T> clazz, List<String> fields) {
         SearchRequest searchRequest = new SearchRequest.Builder()
                 .index(indexName)
                 .from(0)
                 .size(10_000)
+                .source(new SourceConfig.Builder().filter(q -> q.includes(fields)).build())
                 .query(q -> q.matchAll(v -> QueryBuilders.matchAll()))
                 .build();
 

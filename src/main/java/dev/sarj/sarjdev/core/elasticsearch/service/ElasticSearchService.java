@@ -25,7 +25,7 @@ public interface ElasticSearchService {
      * @param <T>       The type of data to retrieve.
      * @return A list containing all data of the specified type from the index.
      */
-    <T> List<T> getAllData(String indexName, Class<T> clazz);
+    <T> List<T> getAllData(String indexName, Class<T> clazz, List<String> fields);
 
 
     /**

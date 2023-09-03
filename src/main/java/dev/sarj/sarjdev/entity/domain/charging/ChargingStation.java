@@ -2,6 +2,7 @@ package dev.sarj.sarjdev.entity.domain.charging;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.model.ChargingLocation;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChargingStation {
     /**

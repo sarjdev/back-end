@@ -48,7 +48,7 @@ public class ChargingStation {
     /**
      * The total number of plugs available at the charging station.
      */
-    private int plugsTotal;
+    private Integer plugsTotal;
 
     /**
      * The charging provider associated with the charging station.

@@ -27,7 +27,7 @@ public class SearchServiceImpl implements SearchService {
     private final ResourceFileContentReader resourceFileContentReader;
 
     @Override
-    @Cacheable(value = "cache")
+    @Cacheable(value = "charging-stations-search-result")
     public SearchResult search() {
         List<String> fields = List.of("id", "location", "provider");
         List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);

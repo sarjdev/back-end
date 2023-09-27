@@ -4,17 +4,19 @@ package dev.sarj.sarjdev.entity.domain.charging;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
-import dev.sarj.sarjdev.service.elasticsearch.indexer.model.ChargingLocation;
+import dev.sarj.sarjdev.service.elasticsearch.indexer.mapper.IndexDocumentMapper;
+import dev.sarj.sarjdev.service.elasticsearch.indexer.model.ChargingIndexDocument;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ChargingStation {
+public class ChargingStation implements IndexDocumentMapper, Serializable {
     /**
      * The unique ID of the document.
      */
@@ -29,6 +31,11 @@ public class ChargingStation {
      * The title of the charging station.
      */
     private String title;
+
+    /**
+     * List of plugs.
+     */
+    private List<Plug> plugs;
 
     /**
      * The address of the charging station.
@@ -58,4 +65,9 @@ public class ChargingStation {
      * Provide live stats for charging station.
      */
     private Boolean provideLiveStats;
+
+    @Override
+    public ChargingIndexDocument toIndexDocument() {
+        return toIndexDocument(this);
+    }
 }

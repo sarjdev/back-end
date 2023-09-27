@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
+import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.template.ElasticSearchIndexerTemplate;
-import dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.esarj.model.ESarjChargingStation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
-public class ESARJProviderElasticSearchIndexer extends ElasticSearchIndexerTemplate<ESarjChargingStation> {
+public class ESARJProviderElasticSearchIndexer extends ElasticSearchIndexerTemplate<ChargingStation> {
     private final ResourceFileContentReader resourceFileContentReader;
 
     @Autowired
@@ -32,12 +32,12 @@ public class ESARJProviderElasticSearchIndexer extends ElasticSearchIndexerTempl
     }
 
     /**
-     * Retrieves a list of ESarjChargingStation instances representing the ESARJ charging provider's data.
+     * Retrieves a list of ChargingStation instances representing the ESARJ charging provider's data.
      *
-     * @return A list of ESarjChargingStation instances.
+     * @return A list of ChargingStation instances.
      */
     @Override
-    protected List<ESarjChargingStation> getProviderChargingMaps() {
+    protected List<ChargingStation> getProviderChargingMaps() {
         // Retrieve and return the list of Object instances
         Optional<String> fileContent = resourceFileContentReader.readResourceFileAsStream("providers/esarj/data.json");
 

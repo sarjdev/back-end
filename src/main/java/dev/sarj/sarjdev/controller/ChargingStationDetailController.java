@@ -15,11 +15,11 @@ import java.util.List;
 @RequestMapping(path = "/v1/charging-stations")
 public class ChargingStationDetailController {
 
-    private final List<ChargingStationDetailTemplate<?>> chargingStationDetailServices;
+    private final List<ChargingStationDetailTemplate> chargingStationDetailServices;
 
     @GetMapping(path = "/{chargingStationId}/detail")
     public ResponseEntity<?> detail(@PathVariable String chargingStationId) {
-        ChargingStationDetailTemplate<?> chargingStationDetailService = chargingStationDetailServices.stream()
+        ChargingStationDetailTemplate chargingStationDetailService = chargingStationDetailServices.stream()
                 .filter(chargingStationDetailServices -> chargingStationDetailServices.isProviderRelated(chargingStationId))
                 .findFirst()
                 .orElseThrow();

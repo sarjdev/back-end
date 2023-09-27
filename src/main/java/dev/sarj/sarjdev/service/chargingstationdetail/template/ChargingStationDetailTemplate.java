@@ -1,6 +1,9 @@
 package dev.sarj.sarjdev.service.chargingstationdetail.template;
 
+import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
+import dev.sarj.sarjdev.service.search.SearchService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -13,11 +16,17 @@ import java.util.Optional;
  * @param <T> The type representing the charging station status or details.
  */
 @Slf4j
-public abstract class ChargingStationDetailTemplate<T> {
+@RequiredArgsConstructor
+public abstract class ChargingStationDetailTemplate {
 
     // Mapping of charging provider prefixes to ChargingProvider enum values
-    private final Map<String, ChargingProvider> chargingStationMap = Map
-            .of("ESARJ", ChargingProvider.ESARJ, "ZES", ChargingProvider.ZES);
+    private final Map<String, ChargingProvider> chargingStationMap = Map.of(
+            "ESARJ", ChargingProvider.ESARJ,
+            "ZES", ChargingProvider.ZES,
+            "AKSAENERGY", ChargingProvider.AKSAENERGY,
+            "BEEFULL", ChargingProvider.BEEFULL);
+
+    private final SearchService service;
 
     /**
      * Retrieves the details of a charging station based on its unique identifier.
@@ -25,14 +34,14 @@ public abstract class ChargingStationDetailTemplate<T> {
      * @param documentId The unique identifier of the charging station.
      * @return An Optional containing the charging station details, or empty if not found.
      */
-    public <T> Optional<T> getDetail(String documentId) {
+    public Optional<ChargingStation> getDetail(String documentId) {
 
         isProviderRelated(documentId);
 
         String chargingStationId = resolveProviderChargingStationId(documentId);
 
         try {
-            T chargingStationStatus = getChargingStationStatus(chargingStationId);
+            ChargingStation chargingStationStatus = getChargingStationStatus(documentId);
             return Optional.ofNullable(chargingStationStatus);
 
         } catch (Exception ex) {
@@ -55,7 +64,9 @@ public abstract class ChargingStationDetailTemplate<T> {
      * @param chargingStationId The identifier of the charging station.
      * @return The charging station status or details.
      */
-    protected abstract <T> T getChargingStationStatus(String chargingStationId);
+    protected ChargingStation getChargingStationStatus(String chargingStationId) {
+        return service.getById(chargingStationId);
+    }
 
     /**
      * Checks if the provided charging station identifier is related to the provider of the implementation.

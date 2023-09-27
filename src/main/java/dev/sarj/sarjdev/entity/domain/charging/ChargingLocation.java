@@ -1,10 +1,12 @@
-package dev.sarj.sarjdev.service.elasticsearch.indexer.model;
+package dev.sarj.sarjdev.entity.domain.charging;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * Represents a charging location with latitude and longitude coordinates.
@@ -14,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChargingLocation {
+public class ChargingLocation implements Serializable {
     /**
      * The latitude coordinate of the charging location.
      */

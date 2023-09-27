@@ -12,6 +12,19 @@
     "location": {
       "type": "geo_point"
     },
+    "plugs": {
+      "properties": {
+        "count": {
+          "type": "long"
+        },
+        "power": {
+          "type": "text"
+        },
+        "type": {
+          "type": "keyword"
+        }
+      }
+    },
     "plugsTotal": {
       "type": "long"
     },

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
+import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.entity.enums.ChargingProvider;
 import dev.sarj.sarjdev.service.elasticsearch.indexer.template.ElasticSearchIndexerTemplate;
-import dev.sarj.sarjdev.service.elasticsearch.indexer.template.provider.zes.model.ZESChargingStation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
-public class ZESProviderElasticSearchIndexer extends ElasticSearchIndexerTemplate<ZESChargingStation> {
+public class ZESProviderElasticSearchIndexer extends ElasticSearchIndexerTemplate<ChargingStation> {
     private final ResourceFileContentReader resourceFileContentReader;
 
     /**
@@ -33,12 +33,12 @@ public class ZESProviderElasticSearchIndexer extends ElasticSearchIndexerTemplat
     }
 
     /**
-     * Retrieves the list of ZESChargingStation instances specific to the ZES provider.
+     * Retrieves the list of ChargingStation instances specific to the ZES provider.
      *
-     * @return A list of ZESChargingStation instances.
+     * @return A list of ChargingStation instances.
      */
     @Override
-    protected List<ZESChargingStation> getProviderChargingMaps() {
+    protected List<ChargingStation> getProviderChargingMaps() {
         // Retrieve and return the list of Object instances
         Optional<String> fileContent = resourceFileContentReader.readResourceFileAsStream("providers/zes/data.json");
 

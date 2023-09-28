@@ -1,5 +1,2 @@
 elastic:
   server:  http://localhost:9200
-server:
-  servlet:
-    context-path: /swagger-web

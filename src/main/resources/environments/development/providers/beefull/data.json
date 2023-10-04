@@ -1,0 +1,44 @@
+[
+  {
+    "id": "BEEFULL#151",
+    "location": {
+      "lat": 39.909063452479295,
+      "lon": 32.75085779075822
+    },
+    "title": "Cozone",
+    "plugs": [
+      {
+        "type": "AC",
+        "count": 1,
+        "power": "unknown kVA"
+      }
+    ],
+    "address": "Ankara",
+    "city": "Ankara",
+    "pointOfInterests": [],
+    "plugsTotal": 1,
+    "provider": "BEEFULL",
+    "provideLiveStats": false
+  },
+  {
+    "id": "BEEFULL#230",
+    "location": {
+      "lat": 39.802862828531886,
+      "lon": 32.45873037081348
+    },
+    "title": "ASO 2.Bölge Yönetim",
+    "plugs": [
+      {
+        "type": "AC",
+        "count": 1,
+        "power": "unknown kVA"
+      }
+    ],
+    "address": "Ankara",
+    "city": "Ankara",
+    "pointOfInterests": [],
+    "plugsTotal": 1,
+    "provider": "BEEFULL",
+    "provideLiveStats": false
+  }
+]

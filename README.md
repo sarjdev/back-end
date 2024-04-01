@@ -69,7 +69,7 @@ We would like to express our gratitude to the contributors of this project and t
 
 ## Get in Touch
 
-For questions, suggestions, or collaborations, please contact us at TODO:contact_info or visit our website at [https://sarj.dev](https://sarj.dev).
+For questions, suggestions, or collaborations, please contact us at [LinkedIn](https://www.linkedin.com/in/yusufyilmazfr/) or visit our website at [https://sarj.dev](https://sarj.dev).
 
 🚀 Let's contribute to a greener future together! 🌍
 

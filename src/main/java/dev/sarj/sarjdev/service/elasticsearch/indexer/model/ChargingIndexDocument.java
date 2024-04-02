@@ -4,6 +4,11 @@ package dev.sarj.sarjdev.service.elasticsearch.indexer.model;
 import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents a document to be indexed in an Elasticsearch index for charging stations.
@@ -23,7 +28,10 @@ public class ChargingIndexDocument extends ChargingStation {
      * @return The ChargingIndexDocument instance with updated search text.
      */
     public ChargingIndexDocument buildSearchText() {
-        searchText = getTitle() + " " + getAddress() + " " + getCity();
+        searchText = Stream.of(getTitle(), getAddress(), getCity())
+                .filter(StringUtils::isNotEmpty)
+                .collect(Collectors.joining(" "));
+
         return this;
     }
 }

@@ -61,7 +61,7 @@ To run the application using Docker Compose, follow these steps:
 
 ## License
 
-This project is licensed under the [Add Your License TODO](https://github.com/sarjdev/back-end)
+This project is licensed under the [GNU General Public License v3.0](https://github.com/sarjdev/back-end/blob/master/LICENSE)
 
 ## Acknowledgements
 

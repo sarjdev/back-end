@@ -94,11 +94,13 @@ public class Station implements IndexDocumentMapper {
 
         for (Socket socket : getSockets()) {
             Plug plug = new Plug();
+            plug.setCount(1);
             plug.setId(socket.getId());
-            plug.setType(PlugType.valueOf(socket.getType()));
-            plug.setSubType(PlugSubType.valueOf(socket.getSubType()));
             plug.setPower(socket.getPower());
             plug.setPrice(socket.getPrice());
+            plug.setType(PlugType.valueOf(socket.getType()));
+            plug.setSocketNumber(socket.getSocketNumber());
+            plug.setSubType(PlugSubType.valueOf(socket.getSubType()));
 
             BigDecimal currentPrice = socket.getPrices()
                     .stream().filter(price -> price.getEndTime() == null)

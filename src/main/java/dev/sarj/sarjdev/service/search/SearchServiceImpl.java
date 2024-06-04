@@ -4,16 +4,20 @@ import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
+import dev.sarj.sarjdev.core.utils.JSONUtils;
 import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.service.search.response.NearestSearchResult;
 import dev.sarj.sarjdev.service.search.response.SearchResult;
 import dev.sarj.sarjdev.service.search.response.SearchSuggestionResult;
 import dev.sarj.sarjdev.service.search.response.SuggestedChargingStation;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
 
 import static dev.sarj.sarjdev.common.Constant.Elastic.ES_INDEX_ALIAS_NAME;
 import static dev.sarj.sarjdev.common.Constant.Elastic.Query.NEAREST_CHARGING_STATIONS_QUERY_PATH;
@@ -29,9 +33,26 @@ public class SearchServiceImpl implements SearchService {
     @Override
     @Cacheable(value = "charging-stations-search-result")
     public SearchResult search() {
-        List<String> fields = List.of("id", "location", "provider");
+        List<String> fields = List.of("id", "geoLocation", "provider");
         List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);
         return new SearchResult(data);
+    }
+
+    @SneakyThrows
+    @Override
+    @Cacheable(value = "compressed-charging-stations-search-result")
+    public byte[] compressedSearch() {
+        List<String> fields = List.of("id", "geoLocation", "provider");
+        List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);
+
+        String json = JSONUtils.serialize(data);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        GZIPOutputStream gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream);
+        gzipOutputStream.write(json.getBytes());
+        gzipOutputStream.close();
+
+        return byteArrayOutputStream.toByteArray();
     }
 
     @Override

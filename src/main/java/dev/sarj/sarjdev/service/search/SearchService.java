@@ -15,6 +15,13 @@ public interface SearchService {
     SearchResult search();
 
     /**
+     * Performs a basic search for all charging stations and returns the search result.
+     *
+     * @return A search result containing a list of all charging stations.
+     */
+    byte[] compressedSearch();
+
+    /**
      * Searches for the nearest charging stations based on provided coordinates and distance criteria.
      *
      * @param latitude  The latitude coordinate for the search center.

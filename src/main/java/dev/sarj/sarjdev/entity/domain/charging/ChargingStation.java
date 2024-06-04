@@ -20,12 +20,7 @@ public class ChargingStation implements IndexDocumentMapper, Serializable {
     /**
      * The unique ID of the document.
      */
-    private String id;
-
-    /**
-     * The location of the charging station.
-     */
-    private ChargingLocation location;
+    private Long id;
 
     /**
      * The title of the charging station.
@@ -33,24 +28,36 @@ public class ChargingStation implements IndexDocumentMapper, Serializable {
     private String title;
 
     /**
+     * The location of the charging station.
+     */
+    private ChargingLocation location;
+
+    private GeoLocation geoLocation;
+
+    /**
+     * Represents an operator entity.
+     */
+    private Operator operator;
+
+    /**
+     * The URL for making reservations or bookings.
+     */
+    private String reservationUrl;
+
+    /**
+     * The phone number that associated with station provider.
+     */
+    private String phone;
+
+    /**
+     * Active status of station.
+     */
+    private Boolean stationActive;
+
+    /**
      * List of plugs.
      */
     private List<Plug> plugs;
-
-    /**
-     * The address of the charging station.
-     */
-    private String address;
-
-    /**
-     * The city where the charging station is located.
-     */
-    private String city;
-
-    /**
-     * The list of points of interest associated with the charging station.
-     */
-    private List<String> pointOfInterests;
 
     /**
      * The total number of plugs available at the charging station.
@@ -61,13 +68,18 @@ public class ChargingStation implements IndexDocumentMapper, Serializable {
      * The charging provider associated with the charging station.
      */
     private ChargingProvider provider;
+
+    /**
+     * Represents a list of payment types.
+     */
+    private List<PaymentType> paymentTypes;
+
     /**
      * Provide live stats for charging station.
      */
     private Boolean provideLiveStats;
 
-    @Override
     public ChargingIndexDocument toIndexDocument() {
-        return toIndexDocument(this);
+        return new ChargingIndexDocument();
     }
 }

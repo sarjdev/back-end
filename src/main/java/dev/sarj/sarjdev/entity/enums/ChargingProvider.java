@@ -7,5 +7,6 @@ public enum ChargingProvider {
     ESARJ,
     AKSAENERGY,
     ZES,
+    EPDK,
     BEEFULL
 }

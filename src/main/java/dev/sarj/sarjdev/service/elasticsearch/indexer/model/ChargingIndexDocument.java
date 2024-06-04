@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,7 +27,7 @@ public class ChargingIndexDocument extends ChargingStation {
      * @return The ChargingIndexDocument instance with updated search text.
      */
     public ChargingIndexDocument buildSearchText() {
-        searchText = Stream.of(getTitle(), getAddress(), getCity())
+        searchText = Stream.of(getTitle(), getLocation().getAddress(), getLocation().getDistrictName(), getLocation().getCityName())
                 .filter(StringUtils::isNotEmpty)
                 .collect(Collectors.joining(" "));
 

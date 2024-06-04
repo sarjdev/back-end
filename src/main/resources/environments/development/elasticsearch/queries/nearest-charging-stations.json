@@ -5,7 +5,7 @@
       "filter": {
         "geo_distance": {
           "distance": "@DISTANCEkm",
-          "location": {
+          "geoLocation": {
             "lat": @LATITUDE,
             "lon": @LONGITUDE
           }
@@ -16,7 +16,7 @@
   "sort": [
     {
       "_geo_distance": {
-        "location": "@LATITUDE, @LONGITUDE",
+        "geoLocation": "@LATITUDE, @LONGITUDE",
         "order": "asc",
         "unit": "km",
         "mode": "min"

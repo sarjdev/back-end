@@ -1,10 +1,7 @@
 package dev.sarj.sarjdev.entity.domain.charging;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -14,27 +11,42 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChargingLocation implements Serializable {
     /**
+     * The unique identifier of the city.
+     */
+    private Long cityId;
+
+    /**
+     * The name of the city.
+     */
+    private String cityName;
+
+    /**
+     * The unique identifier of the district.
+     */
+    private Long districtId;
+
+    /**
+     * The name of the district.
+     */
+    private String districtName;
+
+    /**
+     * The address associated with the location.
+     */
+    private String address;
+
+    /**
      * The latitude coordinate of the charging location.
      */
     private double lat;
+
     /**
      * The longitude coordinate of the charging location.
      */
     private double lon;
-
-    /**
-     * Creates a new ChargingLocation instance with the given latitude and longitude coordinates.
-     *
-     * @param lat The latitude coordinate.
-     * @param lon The longitude coordinate.
-     * @return A new ChargingLocation instance with the specified coordinates.
-     */
-
-    public static ChargingLocation of(double lat, double lon) {
-        return new ChargingLocation(lat, lon);
-    }
 }

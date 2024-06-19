@@ -1,5 +1,6 @@
 package dev.sarj.sarjdev.entity.domain.charging;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 /**
@@ -10,6 +11,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Operator {
     /**
      * The unique identifier of the operator.

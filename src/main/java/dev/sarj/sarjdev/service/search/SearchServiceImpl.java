@@ -42,10 +42,12 @@ public class SearchServiceImpl implements SearchService {
     @Override
     @Cacheable(value = "compressed-charging-stations-search-result")
     public byte[] compressedSearch() {
-        List<String> fields = List.of("id", "geoLocation", "provider");
+        List<String> fields = List.of("id", "geoLocation", "operator.id");
         List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);
 
-        String json = JSONUtils.serialize(data);
+        SearchResult result = new SearchResult(data);
+
+        String json = JSONUtils.serialize(result);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         GZIPOutputStream gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream);

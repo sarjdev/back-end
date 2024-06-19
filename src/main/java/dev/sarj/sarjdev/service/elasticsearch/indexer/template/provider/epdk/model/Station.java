@@ -79,8 +79,8 @@ public class Station implements IndexDocumentMapper {
     public ChargingIndexDocument toIndexDocument() {
 
         ChargingLocation chargingLocation = new ChargingLocation();
-        chargingLocation.setCityId(getId());
-        chargingLocation.setDistrictId(getId());
+        chargingLocation.setCityId(Long.valueOf(getCityId()));
+        chargingLocation.setDistrictId(Long.valueOf(getDistrictId()));
         chargingLocation.setAddress(getAddress());
         chargingLocation.setLat(getLat());
         chargingLocation.setLon(getLng());

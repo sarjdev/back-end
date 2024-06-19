@@ -6,10 +6,7 @@ import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
 import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
-import dev.sarj.sarjdev.service.search.response.NearestSearchResult;
-import dev.sarj.sarjdev.service.search.response.SearchResult;
-import dev.sarj.sarjdev.service.search.response.SearchSuggestionResult;
-import dev.sarj.sarjdev.service.search.response.SuggestedChargingStation;
+import dev.sarj.sarjdev.service.search.response.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.cache.annotation.Cacheable;
@@ -66,12 +63,21 @@ public class SearchServiceImpl implements SearchService {
                 .replaceAll("@LATITUDE", latitude.toString())
                 .replaceAll("@LONGITUDE", longitude.toString());
 
-        SearchResponse<ChargingStation> chargingStationSearchResponse = elasticsearchService.runQuery(ES_INDEX_ALIAS_NAME, query, ChargingStation.class);
+        SearchResponse<NearestChargingStation> chargingStationSearchResponse = elasticsearchService.runQuery(ES_INDEX_ALIAS_NAME, query, NearestChargingStation.class);
 
-        List<ChargingStation> chargingStations = chargingStationSearchResponse.hits()
+        List<NearestChargingStation> chargingStations = chargingStationSearchResponse.hits()
                 .hits()
                 .stream()
-                .map(Hit::source).toList();
+                .map(hit ->
+                {
+                    Double measured = hit.fields().get("distance").to(Double[].class)[0];
+
+                    NearestChargingStation chargingStation = hit.source();
+                    chargingStation.setDistance(measured);
+
+                    return chargingStation;
+                })
+                .toList();
 
         Integer total = (int) chargingStationSearchResponse.hits()
                 .total()

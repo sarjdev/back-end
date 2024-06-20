@@ -1,2 +1,5 @@
+spring:
+  main:
+    allow-circular-references: true
 elastic:
   server:  http://localhost:9200

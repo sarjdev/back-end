@@ -2,6 +2,7 @@ package dev.sarj.sarjdev.service.search;
 
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import dev.sarj.sarjdev.core.aspect.performance.Performance;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
@@ -9,6 +10,7 @@ import dev.sarj.sarjdev.entity.domain.charging.ChargingStation;
 import dev.sarj.sarjdev.service.search.response.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,8 @@ import static dev.sarj.sarjdev.common.Constant.Elastic.Query.SUGGEST_CHARGING_ST
 @RequiredArgsConstructor
 public class SearchServiceImpl implements SearchService {
 
+    @Autowired
+    private SearchServiceImpl self;
     private final ElasticSearchService elasticsearchService;
     private final ResourceFileContentReader resourceFileContentReader;
 
@@ -35,10 +39,19 @@ public class SearchServiceImpl implements SearchService {
         return new SearchResult(data);
     }
 
-    @SneakyThrows
+
     @Override
-    @Cacheable(value = "compressed-charging-stations-search-result")
+    @Performance
     public byte[] compressedSearch() {
+        return self.doCompressedSearch();
+    }
+
+
+    @Override
+    @Performance
+    @SneakyThrows
+    @Cacheable(value = "compressed-charging-stations-search-result")
+    public byte[] doCompressedSearch() {
         List<String> fields = List.of("id", "geoLocation", "operator.id");
         List<ChargingStation> data = elasticsearchService.getAllData(ES_INDEX_ALIAS_NAME, ChargingStation.class, fields);
 
@@ -55,6 +68,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    @Performance
     public NearestSearchResult nearest(Double latitude, Double longitude, Integer distance, Integer size) {
         String query = resourceFileContentReader.readResourceFileAsStream(NEAREST_CHARGING_STATIONS_QUERY_PATH)
                 .orElseThrow(IllegalArgumentException::new)
@@ -87,6 +101,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    @Performance
     public SearchSuggestionResult suggest(String q, Integer size) {
         String query = resourceFileContentReader.readResourceFileAsStream(SUGGEST_CHARGING_STATIONS_QUERY_PATH)
                 .orElseThrow(IllegalArgumentException::new)

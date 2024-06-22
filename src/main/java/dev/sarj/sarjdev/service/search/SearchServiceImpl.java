@@ -2,7 +2,6 @@ package dev.sarj.sarjdev.service.search;
 
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import dev.sarj.sarjdev.core.aspect.performance.Performance;
 import dev.sarj.sarjdev.core.elasticsearch.service.ElasticSearchService;
 import dev.sarj.sarjdev.core.file.ResourceFileContentReader;
 import dev.sarj.sarjdev.core.utils.JSONUtils;
@@ -41,14 +40,12 @@ public class SearchServiceImpl implements SearchService {
 
 
     @Override
-    @Performance
     public byte[] compressedSearch() {
         return self.doCompressedSearch();
     }
 
 
     @Override
-    @Performance
     @SneakyThrows
     @Cacheable(value = "compressed-charging-stations-search-result")
     public byte[] doCompressedSearch() {
@@ -68,7 +65,6 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    @Performance
     public NearestSearchResult nearest(Double latitude, Double longitude, Integer distance, Integer size) {
         String query = resourceFileContentReader.readResourceFileAsStream(NEAREST_CHARGING_STATIONS_QUERY_PATH)
                 .orElseThrow(IllegalArgumentException::new)
@@ -101,7 +97,6 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    @Performance
     public SearchSuggestionResult suggest(String q, Integer size) {
         String query = resourceFileContentReader.readResourceFileAsStream(SUGGEST_CHARGING_STATIONS_QUERY_PATH)
                 .orElseThrow(IllegalArgumentException::new)

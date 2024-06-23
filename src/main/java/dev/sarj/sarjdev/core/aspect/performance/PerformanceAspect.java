@@ -168,10 +168,6 @@ public class PerformanceAspect {
 
         methodExecutionTimeService.save(methodExecutionTime);
 
-        duration = Duration.between(start, Instant.now());
-
-        executionTimeMillis = (double) duration.getNano() / TimeUnit.MILLISECONDS.toNanos(1);
-
         log.info(elapsedType + " | " + className + "." + methodSignature + " is proceed in " + executionTimeMillis + " ms.");
     }
 

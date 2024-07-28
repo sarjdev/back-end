@@ -52,7 +52,7 @@ public abstract class ElasticSearchIndexerTemplate<T extends IndexDocumentMapper
      */
     private void indexOnES(List<ChargingIndexDocument> chargingIndexDocuments) {
         for (ChargingIndexDocument chargingIndexDocument : chargingIndexDocuments) {
-            elasticSearchService.indexDocument(ES_INDEX_ALIAS_NAME, chargingIndexDocument.getId(), chargingIndexDocument);
+            elasticSearchService.indexDocument(ES_INDEX_ALIAS_NAME, chargingIndexDocument.getId().toString(), chargingIndexDocument);
         }
     }
 

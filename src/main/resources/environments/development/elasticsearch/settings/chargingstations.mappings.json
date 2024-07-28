@@ -1,46 +1,106 @@
 {
   "properties": {
-    "address": {
-      "type": "text"
-    },
-    "city": {
-      "type": "text"
-    },
     "id": {
       "type": "keyword"
     },
+    "title": {
+      "type": "text"
+    },
     "location": {
+      "properties": {
+        "cityId": {
+          "type": "long"
+        },
+        "cityName": {
+          "type": "text"
+        },
+        "districtId": {
+          "type": "long"
+        },
+        "districtName": {
+          "type": "text"
+        },
+        "address": {
+          "type": "text"
+        },
+        "lat": {
+          "type": "double"
+        },
+        "lon": {
+          "type": "double"
+        }
+      }
+    },
+    "geoLocation": {
       "type": "geo_point"
+    },
+    "operator": {
+      "properties": {
+        "id": {
+          "type": "long"
+        },
+        "title": {
+          "type": "text"
+        },
+        "brand": {
+          "type": "text"
+        }
+      }
+    },
+    "reservationUrl": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "text"
+    },
+    "stationActive": {
+      "type": "boolean"
     },
     "plugs": {
       "properties": {
-        "count": {
+        "id": {
           "type": "long"
-        },
-        "power": {
-          "type": "text"
         },
         "type": {
           "type": "keyword"
+        },
+        "subType": {
+          "type": "keyword"
+        },
+        "socketNumber": {
+          "type": "keyword"
+        },
+        "power": {
+          "type": "double"
+        },
+        "price": {
+          "type": "double"
+        },
+        "count": {
+          "type": "long"
         }
       }
     },
     "plugsTotal": {
       "type": "long"
     },
-    "pointOfInterests": {
-      "type": "text"
-    },
     "provider": {
       "type": "keyword"
+    },
+    "paymentTypes": {
+      "properties": {
+        "name": {
+          "type": "text"
+        }
+      }
+    },
+    "provideLiveStats": {
+      "type": "boolean"
     },
     "searchText": {
       "type": "text",
       "analyzer": "autocomplete",
       "search_analyzer": "standard"
-    },
-    "title": {
-      "type": "text"
     }
   }
 }

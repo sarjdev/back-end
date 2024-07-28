@@ -20,11 +20,7 @@ import java.util.Optional;
 public abstract class ChargingStationDetailTemplate {
 
     // Mapping of charging provider prefixes to ChargingProvider enum values
-    private final Map<String, ChargingProvider> chargingStationMap = Map.of(
-            "ESARJ", ChargingProvider.ESARJ,
-            "ZES", ChargingProvider.ZES,
-            "AKSAENERGY", ChargingProvider.AKSAENERGY,
-            "BEEFULL", ChargingProvider.BEEFULL);
+    private final Map<String, ChargingProvider> chargingStationMap = Map.of("EPDK", ChargingProvider.EPDK);
 
     private final SearchService service;
 
@@ -76,13 +72,19 @@ public abstract class ChargingStationDetailTemplate {
      * @throws IllegalArgumentException if the charging provider is not found in the map.
      */
     public boolean isProviderRelated(String chargingStationId) {
-        String chargingProviderPrefix = resolveChargingProviderPrefix(chargingStationId);
+        if (requireProviderRelated()) {
+            String chargingProviderPrefix = resolveChargingProviderPrefix(chargingStationId);
 
-        ChargingProvider chargingProvider = Optional.ofNullable(chargingStationMap.get(chargingProviderPrefix))
-                .orElseThrow(() -> new IllegalArgumentException("There is no any provider in current service, prefix: " + chargingProviderPrefix));
+            ChargingProvider chargingProvider = Optional.ofNullable(chargingStationMap.get(chargingProviderPrefix))
+                    .orElseThrow(() -> new IllegalArgumentException("There is no any provider in current service, prefix: " + chargingProviderPrefix));
 
-        return getChargingProvider() == chargingProvider;
+            return getChargingProvider() == chargingProvider;
+        }
+
+        return true;
     }
+
+    protected abstract boolean requireProviderRelated();
 
     /**
      * Resolves the charging station identifier after removing the provider prefix.

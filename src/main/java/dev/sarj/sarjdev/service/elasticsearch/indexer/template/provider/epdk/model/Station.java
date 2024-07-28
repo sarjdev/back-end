@@ -93,6 +93,11 @@ public class Station implements IndexDocumentMapper {
         List<Plug> plugs = new ArrayList<>();
 
         for (Socket socket : getSockets()) {
+
+            if (socket == null) {
+                continue;
+            }
+
             Plug plug = new Plug();
             plug.setCount(1);
             plug.setId(socket.getId());

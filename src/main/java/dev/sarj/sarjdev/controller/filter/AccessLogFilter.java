@@ -49,7 +49,7 @@ public class AccessLogFilter implements Filter {
             builder.stackTrace(ExceptionUtils.getStackTrace(exception))
                     .responseTime(Instant.now())
                     .status(500)
-                    .contentLength(123L);
+                    .contentLength(0L);
 
             CompletableFuture.runAsync(() -> prepareAndSaveAccessLog(builder));
 
@@ -59,7 +59,7 @@ public class AccessLogFilter implements Filter {
         builder
                 .responseTime(Instant.now())
                 .status(response.getStatus())
-                .contentLength(123L);
+                .contentLength(0L);
 
         CompletableFuture.runAsync(() -> prepareAndSaveAccessLog(builder));
     }
